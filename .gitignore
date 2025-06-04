@@ -21,7 +21,7 @@ target/
 
 #Ignore the profile-image directory.
 /src/main/resources/profile-images
-
+.env
 
 ### NetBeans ###
 /nbproject/private/
