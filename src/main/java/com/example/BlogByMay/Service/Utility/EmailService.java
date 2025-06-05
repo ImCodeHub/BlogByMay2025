@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -161,5 +162,19 @@ public class EmailService {
                 "</body>" +
                 "</html>";
 
+    }
+
+    @Scheduled(fixedRate = 3000)
+    public void reportCurrentTime(){
+        System.out.println("Blog current times: "+System.currentTimeMillis());
+    }
+
+    @Scheduled(cron = "0 33 16 * * *")
+    public void runAtSpecificTime(){
+        String to = "aaryanuttam54321@gmail.com";
+        String sub = "Greeting from scheduling from spring boot";
+        String text = "this email for the Testing purposes only. kindly ignore this Email. Thank you.";
+        sendEmail(to, sub, text);
+        System.out.println("this email has been send now at 4:29:00 pm today!");
     }
 }
